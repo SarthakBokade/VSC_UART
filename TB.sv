@@ -395,16 +395,15 @@ endclass
   environment env;
   uart_if vif();
   
-// FIXED CODE:
+
 top #(1000000, 9600) dut
     (vif.clk, vif.rst, vif.rx, vif.newd, vif.tx_data, vif.tx, vif.done_tx, vif.done_rx, vif.rx_data);
   
 initial begin 
     
     vif.clk = 0;
-    // FIX: Initialize inputs to known states to avoid 'X' propagation
     vif.rst = 1;      
-    vif.rx = 1;       // UART line idle state is High
+    vif.rx = 1;       
     vif.newd = 0;
     vif.tx_data = 0;
     
